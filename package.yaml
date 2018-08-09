@@ -1,0 +1,15 @@
+name: algebra-with-nico-code
+version: '0.1.0.0'
+category: Simple
+author: aiya000
+maintainer: aiya000.develop@gmail.com
+copyright: 2018 aiya000
+license: MIT
+homepage: https://github.com/aiya000/algebra-with-nico-code
+
+dependencies:
+  - base >=4.7 && <5
+
+executables:
+  dummy:
+    main: Dummy.hs

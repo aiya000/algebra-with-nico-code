@@ -9,6 +9,7 @@ homepage: https://github.com/aiya000/algebra-with-nico-code
 
 dependencies:
   - base >=4.7 && <5
+  - smallcheck
 
 executables:
   dummy:

@@ -111,6 +111,14 @@ instance Monad m => Serial m Or where
   series :: Series m Or
   series = Or <$> series
 
+-- #@@range_begin(int_instances_examples)
+aSumInt :: SumInt
+aSumInt = SumInt 10 <> SumInt 20
+
+aProductInt :: ProductInt
+aProductInt = ProductInt 10 <> ProductInt 20
+-- #@@range_end(int_instances_examples)
+
 -- #@@range_begin(law)
 assocLaw :: (Semigroup a, Eq a) => a -> a -> a -> Bool
 assocLaw x y z =

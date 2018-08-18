@@ -56,8 +56,8 @@ aProductInt = Product 10 <> Product 20
 -- #@@range_end(int_instances_examples)
 
 -- #@@range_begin(law)
-assocLaw :: (Semigroup a, Eq a) => a -> a -> a -> Bool
-assocLaw x y z =
+associativeLaw :: (Semigroup a, Eq a) => a -> a -> a -> Bool
+associativeLaw x y z =
   (x <> y) <> z == x <> (y <> z)
 -- #@@range_end(law)
 
@@ -78,10 +78,10 @@ result = sum [1..100]
 -- #@@range_begin(tests_for_law)
 main :: IO ()
 main = do
-  smallCheck 2 $ assocLaw @ Sum
-  smallCheck 2 $ assocLaw @ Product
-  smallCheck 2 $ assocLaw @ [Double]
-  smallCheck 2 $ assocLaw @ And
-  smallCheck 2 $ assocLaw @ Or
-  smallCheck 2 $ assocLaw @ ()
+  smallCheck 2 $ associativeLaw @ Sum
+  smallCheck 2 $ associativeLaw @ Product
+  smallCheck 2 $ associativeLaw @ [Double]
+  smallCheck 2 $ associativeLaw @ And
+  smallCheck 2 $ associativeLaw @ Or
+  smallCheck 2 $ associativeLaw @ ()
 -- #@@range_end(tests_for_law)

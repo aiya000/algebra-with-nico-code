@@ -12,13 +12,13 @@ import Test.SmallCheck (smallCheck)
 class Monoid a => Group a where
   inverse :: a -> a
 
-instance Group SumInt where
+instance Group Sum where
   inverse = negate
 
 instance Group () where
-  inverse _ = ()
+  inverse () = ()
 
-aSumInt :: SumInt
+aSumInt :: Sum
 aSumInt = inverse empty
 
 aUnit :: ()
@@ -30,5 +30,5 @@ inverseLaw x =
 
 main :: IO ()
 main = do
-  smallCheck 2 $ inverseLaw @ SumInt
+  smallCheck 2 $ inverseLaw @ Sum
   smallCheck 2 $ inverseLaw @ ()

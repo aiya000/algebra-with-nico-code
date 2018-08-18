@@ -17,10 +17,10 @@ class Semigroup a => Monoid a where
 
 -- #@@range_begin(instances)
 instance Monoid Sum where
-  empty = 0
+  empty = Sum 0
 
 instance Monoid Product where
-  empty = 1
+  empty = Product 1
 
 instance Monoid RSum where
   empty = RSum $ 0 % 1

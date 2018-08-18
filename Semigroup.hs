@@ -1,4 +1,6 @@
+{-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE TypeApplications #-}
+{-# LANGUAGE TypeSynonymInstances #-}
 
 module Semigroup
   ( Semigroup (..)
@@ -23,6 +25,9 @@ instance Semigroup Int where
   (<>) = (+)
 -- #@@range_end(int_instance)
 
+instance Semigroup Rational where
+  (<>) = (+)
+
 instance Semigroup [a] where
   (<>) = (++)
 
@@ -38,6 +43,12 @@ instance Semigroup Sum where
   (<>) = (+)
 
 instance Semigroup Product where
+  (<>) = (*)
+
+instance Semigroup RSum where
+  (<>) = (+)
+
+instance Semigroup RProduct where
   (<>) = (*)
 
 instance Semigroup And where
@@ -80,6 +91,8 @@ main :: IO ()
 main = do
   smallCheck 2 $ associativeLaw @ Sum
   smallCheck 2 $ associativeLaw @ Product
+  smallCheck 2 $ associativeLaw @ RSum
+  smallCheck 2 $ associativeLaw @ RProduct
   smallCheck 2 $ associativeLaw @ [Double]
   smallCheck 2 $ associativeLaw @ And
   smallCheck 2 $ associativeLaw @ Or

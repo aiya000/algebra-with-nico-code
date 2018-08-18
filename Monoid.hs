@@ -4,6 +4,8 @@ module Monoid
   ( Monoid (..)
   ) where
 
+import Core
+import Data.Ratio ((%))
 import Prelude hiding (Semigroup(..), Monoid(..))
 import Semigroup
 import Test.SmallCheck (smallCheck)
@@ -19,6 +21,12 @@ instance Monoid Sum where
 
 instance Monoid Product where
   empty = 1
+
+instance Monoid RSum where
+  empty = RSum $ 0 % 1
+
+instance Monoid RProduct where
+  empty = RProduct $ 1 % 1
 
 instance Monoid [a] where
   empty = []
@@ -60,6 +68,8 @@ main :: IO ()
 main = do
   smallCheck 2 $ emptyLaw @ Sum
   smallCheck 2 $ emptyLaw @ Product
+  smallCheck 2 $ emptyLaw @ RSum
+  smallCheck 2 $ emptyLaw @ RProduct
   smallCheck 2 $ emptyLaw @ [Double]
   smallCheck 2 $ emptyLaw @ And
   smallCheck 2 $ emptyLaw @ Or

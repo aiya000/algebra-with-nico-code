@@ -57,11 +57,13 @@ emptyLaw x =
 
 {-# ANN mconcat "HLint: ignore Eta reduce" #-}
 
+-- #@@range_begin(practice)
 mconcat :: Monoid a => [a] -> a
-mconcat xs = foldl (<>) empty xs
+mconcat = foldl (<>) empty
 
 result :: Sum
 result = mconcat [1..100]
+-- #@@range_end(practice)
 
 -- #@@range_begin(tests_for_law)
 main :: IO ()

@@ -5,7 +5,7 @@ module Group
   ) where
 
 import Core
-import Data.Ratio ((%))
+import Data.Ratio ((%), numerator, denominator)
 import Monoid
 import Prelude hiding (Semigroup(..), Monoid(..))
 import Semigroup
@@ -37,4 +37,15 @@ main :: IO ()
 main = do
   smallCheck 2 $ inverseLaw @ Sum
   smallCheck 2 $ inverseLaw @ RSum
+  smallCheck 2 $ inverseLaw @ RProduct
   smallCheck 2 $ inverseLaw @ ()
+
+-- #@@range_begin(extra)
+-- | An illegal instance
+instance Group RProduct where
+  inverse (RProduct x) = RProduct $ denominator x % numerator x
+
+checkRProductGroup :: IO ()
+checkRProductGroup =
+  smallCheck 2 $ inverseLaw @ RProduct
+-- #@@range_end(extra)

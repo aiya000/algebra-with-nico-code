@@ -1,3 +1,5 @@
+{-# LANGUAGE AllowAmbiguousTypes #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeApplications #-}
 
 module Group
@@ -11,9 +13,12 @@ import Prelude hiding (Semigroup(..), Monoid(..))
 import Semigroup
 import Test.SmallCheck (smallCheck)
 
+-- #@@range_begin(class)
 class Monoid a => Group a where
   inverse :: a -> a
+-- #@@range_end(class)
 
+-- #@@range_begin(instances)
 instance Group Sum where
   inverse = negate
 
@@ -22,6 +27,7 @@ instance Group RSum where
 
 instance Group () where
   inverse () = ()
+-- #@@range_end(instances)
 
 aSumInt :: Sum
 aSumInt = inverse empty
@@ -29,15 +35,21 @@ aSumInt = inverse empty
 aUnit :: ()
 aUnit = inverse empty
 
+-- #@@range_begin(law)
 inverseLaw :: (Group a, Eq a) => a -> Bool
 inverseLaw x =
   (x <> inverse x == empty) && (empty == inverse x <> x)
+-- #@@range_end(law)
+
+check :: forall a. (Group a, Eq a) => Bool
+check = (empty :: a) <> empty == empty
 
 main :: IO ()
 main = do
   smallCheck 2 $ inverseLaw @ Sum
   smallCheck 2 $ inverseLaw @ RSum
-  smallCheck 2 $ inverseLaw @ RProduct
+  smallCheck 2 $ check @ Sum
+  smallCheck 2 $ check @ RSum
   smallCheck 2 $ inverseLaw @ ()
 
 -- #@@range_begin(extra)

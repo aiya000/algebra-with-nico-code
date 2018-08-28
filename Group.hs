@@ -41,15 +41,10 @@ inverseLaw x =
   (x <> inverse x == empty) && (empty == inverse x <> x)
 -- #@@range_end(law)
 
-check :: forall a. (Group a, Eq a) => Bool
-check = (empty :: a) <> empty == empty
-
 main :: IO ()
 main = do
   smallCheck 2 $ inverseLaw @ Sum
   smallCheck 2 $ inverseLaw @ RSum
-  smallCheck 2 $ check @ Sum
-  smallCheck 2 $ check @ RSum
   smallCheck 2 $ inverseLaw @ ()
 
 -- #@@range_begin(extra)

@@ -68,12 +68,12 @@ result = mconcat [1..100]
 -- #@@range_begin(tests_for_law)
 main :: IO ()
 main = do
-  smallCheck 2 $ emptyLaw @ Sum
-  smallCheck 2 $ emptyLaw @ Product
-  smallCheck 2 $ emptyLaw @ RSum
-  smallCheck 2 $ emptyLaw @ RProduct
-  smallCheck 2 $ emptyLaw @ [Double]
-  smallCheck 2 $ emptyLaw @ And
-  smallCheck 2 $ emptyLaw @ Or
-  smallCheck 2 $ emptyLaw @ ()
+  smallCheck 2 $ emptyLaw @Sum
+  smallCheck 2 $ emptyLaw @Product
+  smallCheck 2 $ emptyLaw @RSum
+  smallCheck 2 $ emptyLaw @RProduct
+  smallCheck 2 $ emptyLaw @[Double]
+  smallCheck 2 $ emptyLaw @And
+  smallCheck 2 $ emptyLaw @Or
+  smallCheck 2 $ emptyLaw @()
 -- #@@range_end(tests_for_law)

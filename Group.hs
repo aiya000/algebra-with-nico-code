@@ -43,9 +43,9 @@ inverseLaw x =
 
 main :: IO ()
 main = do
-  smallCheck 2 $ inverseLaw @ Sum
-  smallCheck 2 $ inverseLaw @ RSum
-  smallCheck 2 $ inverseLaw @ ()
+  smallCheck 2 $ inverseLaw @Sum
+  smallCheck 2 $ inverseLaw @RSum
+  smallCheck 2 $ inverseLaw @()
 
 -- #@@range_begin(extra)
 -- | An illegal instance

@@ -89,12 +89,12 @@ result = sum [1..100]
 -- #@@range_begin(tests_for_law)
 main :: IO ()
 main = do
-  smallCheck 2 $ associativeLaw @ Sum
-  smallCheck 2 $ associativeLaw @ Product
-  smallCheck 2 $ associativeLaw @ RSum
-  smallCheck 2 $ associativeLaw @ RProduct
-  smallCheck 2 $ associativeLaw @ [Double]
-  smallCheck 2 $ associativeLaw @ And
-  smallCheck 2 $ associativeLaw @ Or
-  smallCheck 2 $ associativeLaw @ ()
+  smallCheck 2 $ associativeLaw @Sum
+  smallCheck 2 $ associativeLaw @Product
+  smallCheck 2 $ associativeLaw @RSum
+  smallCheck 2 $ associativeLaw @RProduct
+  smallCheck 2 $ associativeLaw @[Double]
+  smallCheck 2 $ associativeLaw @And
+  smallCheck 2 $ associativeLaw @Or
+  smallCheck 2 $ associativeLaw @()
 -- #@@range_end(tests_for_law)

@@ -60,33 +60,33 @@ associativeLawForMulti x y z =
 
 checkAssociativeLawForAdd :: IO ()
 checkAssociativeLawForAdd = do
-  smallCheck 2 $ associativeLawForAdd @ Int
-  smallCheck 2 $ associativeLawForAdd @ Rational
-  smallCheck 2 $ associativeLawForAdd @ ()
+  smallCheck 2 $ associativeLawForAdd @Int
+  smallCheck 2 $ associativeLawForAdd @Rational
+  smallCheck 2 $ associativeLawForAdd @()
 
 checkEmptyLawForAdd :: IO ()
 checkEmptyLawForAdd = do
-  smallCheck 2 $ emptyLawForAdd @ Int
-  smallCheck 2 $ emptyLawForAdd @ Rational
-  smallCheck 2 $ emptyLawForAdd @ ()
+  smallCheck 2 $ emptyLawForAdd @Int
+  smallCheck 2 $ emptyLawForAdd @Rational
+  smallCheck 2 $ emptyLawForAdd @()
 
 checkInverseLawForAdd :: IO ()
 checkInverseLawForAdd = do
-  smallCheck 2 $ inverseLawForAdd @ Int
-  smallCheck 2 $ inverseLawForAdd @ Rational
-  smallCheck 2 $ inverseLawForAdd @ ()
+  smallCheck 2 $ inverseLawForAdd @Int
+  smallCheck 2 $ inverseLawForAdd @Rational
+  smallCheck 2 $ inverseLawForAdd @()
 
 checkAssociativeLawForMulti :: IO ()
 checkAssociativeLawForMulti = do
-  smallCheck 2 $ associativeLawForMulti @ Int
-  smallCheck 2 $ associativeLawForMulti @ Rational
-  smallCheck 2 $ associativeLawForMulti @ ()
+  smallCheck 2 $ associativeLawForMulti @Int
+  smallCheck 2 $ associativeLawForMulti @Rational
+  smallCheck 2 $ associativeLawForMulti @()
 
 checkDistributiveLaw :: IO ()
 checkDistributiveLaw = do
-  smallCheck 2 $ distributiveLaw @ Int
-  smallCheck 2 $ distributiveLaw @ Rational
-  smallCheck 2 $ distributiveLaw @ ()
+  smallCheck 2 $ distributiveLaw @Int
+  smallCheck 2 $ distributiveLaw @Rational
+  smallCheck 2 $ distributiveLaw @()
 
 main :: IO ()
 main = do

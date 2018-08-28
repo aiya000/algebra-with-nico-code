@@ -28,9 +28,9 @@ commutativeLaw x y =
 -- #@@range_begin(tests_for_law)
 main :: IO ()
 main = do
-  smallCheck 2 $ commutativeLaw @ Sum
-  smallCheck 2 $ commutativeLaw @ Product
-  smallCheck 2 $ commutativeLaw @ And
-  smallCheck 2 $ commutativeLaw @ Or
-  smallCheck 2 $ commutativeLaw @ ()
+  smallCheck 2 $ commutativeLaw @Sum
+  smallCheck 2 $ commutativeLaw @Product
+  smallCheck 2 $ commutativeLaw @And
+  smallCheck 2 $ commutativeLaw @Or
+  smallCheck 2 $ commutativeLaw @()
 -- #@@range_end(tests_for_law)

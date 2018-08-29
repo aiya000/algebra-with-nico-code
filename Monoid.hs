@@ -52,7 +52,7 @@ aProductInt = empty <> Product 20
 -- #@@range_begin(law)
 emptyLaw :: (Monoid a, Eq a) => a -> Bool
 emptyLaw x =
-  empty <> x == x && x == x <> empty
+  (empty <> x == x) && (x == x <> empty)
 -- #@@range_end(law)
 
 {-# ANN mconcat "HLint: ignore Eta reduce" #-}

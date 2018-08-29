@@ -43,7 +43,7 @@ associativeLawForAdd x y z =
 
 emptyLawForAdd :: (Ring a, Eq a) => a -> Bool
 emptyLawForAdd x =
-  x <> emptyA == x && x == emptyA <> x
+  (x <> emptyA == x) && (x == emptyA <> x)
 
 inverseLawForAdd :: (Ring a, Eq a) => a -> Bool
 inverseLawForAdd x =

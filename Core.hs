@@ -7,7 +7,7 @@
 -- | Expose pricipal data with the instances
 module Core where
 
-import Data.Ratio (Rational, (%))
+import Data.Ratio ((%))
 import Test.SmallCheck.Series (Serial(..), Series)
 
 -- #@@range_begin(wrapper_types)

@@ -67,7 +67,9 @@ aProductInt = Product 10 <> Product 20
 -- #@@range_end(int_instances_examples)
 
 -- #@@range_begin(law)
+-- #@@range_begin(law_type)
 associativeLaw :: (Semigroup a, Eq a) => a -> a -> a -> Bool
+-- #@@range_end(law_type)
 associativeLaw x y z =
   (x <> y) <> z == x <> (y <> z)
 -- #@@range_end(law)

@@ -19,24 +19,15 @@ class Semigroup a where
   (<>) :: a -> a -> a
 -- #@@range_end(class)
 
--- #@@range_begin(basic_instances)
 -- #@@range_begin(int_instance)
 instance Semigroup Int where
   (<>) = (+)
 -- #@@range_end(int_instance)
 
-instance Semigroup Rational where
-  (<>) = (+)
-
-instance Semigroup [a] where
-  (<>) = (++)
-
+-- #@@range_begin(bool_instance)
 instance Semigroup Bool where
   (<>) = (&&)
-
-instance Semigroup () where
-  () <> () = ()
--- #@@range_end(basic_instances)
+-- #@@range_end(bool_instance)
 
 -- #@@range_begin(newtype_instances)
 instance Semigroup Sum where
@@ -45,18 +36,29 @@ instance Semigroup Sum where
 instance Semigroup Product where
   (<>) = (*)
 
-instance Semigroup RSum where
-  (<>) = (+)
-
-instance Semigroup RProduct where
-  (<>) = (*)
-
 instance Semigroup And where
   And x <> And y = And $ x && y
 
 instance Semigroup Or where
   Or x <> Or y = Or $ x || y
 -- #@@range_end(newtype_instances)
+
+-- #@@range_begin(another_instances)
+instance Semigroup RSum where
+  (<>) = (+)
+
+instance Semigroup RProduct where
+  (<>) = (*)
+
+instance Semigroup Rational where
+  (<>) = (+)
+
+instance Semigroup [a] where
+  (<>) = (++)
+
+instance Semigroup () where
+  () <> () = ()
+-- #@@range_end(another_instances)
 
 -- #@@range_begin(int_instances_examples)
 aSumInt :: Sum
@@ -74,18 +76,15 @@ associativeLaw x y z =
   (x <> y) <> z == x <> (y <> z)
 -- #@@range_end(law)
 
-{-# ANN concat "HLint: ignore Eta reduce" #-}
-
 -- #@@range_begin(practice)
 concat :: Semigroup a => a -> [a] -> a
-concat initial xs = foldl (<>) initial xs
+concat = foldl (<>)
 
-result :: Sum
-result = sum [1..100]
-  where
-    sum :: [Sum] -> Sum
-    sum [] = 0
-    sum xs = concat 0 xs
+resultSum :: Int
+resultSum = concat 0 [1..100]
+
+resultAll :: Bool
+resultAll = concat True [True, True, True]
 -- #@@range_end(practice)
 
 -- #@@range_begin(tests_for_law)

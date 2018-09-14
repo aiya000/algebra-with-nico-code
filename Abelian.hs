@@ -14,6 +14,8 @@ class Semigroup a => Abelian a
 -- #@@range_begin(instances)
 instance Abelian Sum
 instance Abelian Product
+instance Abelian RSum
+instance Abelian RProduct
 instance Abelian And
 instance Abelian Or
 instance Abelian ()
@@ -30,6 +32,8 @@ main :: IO ()
 main = do
   smallCheck 2 $ commutativeLaw @Sum
   smallCheck 2 $ commutativeLaw @Product
+  smallCheck 2 $ commutativeLaw @RSum
+  smallCheck 2 $ commutativeLaw @RProduct
   smallCheck 2 $ commutativeLaw @And
   smallCheck 2 $ commutativeLaw @Or
   smallCheck 2 $ commutativeLaw @()

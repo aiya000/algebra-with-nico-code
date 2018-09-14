@@ -41,31 +41,23 @@ instance Monoid () where
   empty = ()
 -- #@@range_end(instances)
 
--- #@@range_begin(value_example)
-aSumInt :: Sum
-aSumInt = Sum 10 <> empty
-
-aProductInt :: Product
-aProductInt = empty <> Product 20
--- #@@range_end(value_example)
-
 -- #@@range_begin(law)
 emptyLaw :: (Monoid a, Eq a) => a -> Bool
 emptyLaw x =
   (empty <> x == x) && (x == x <> empty)
 -- #@@range_end(law)
 
-{-# ANN mconcat "HLint: ignore Eta reduce" #-}
-
 -- #@@range_begin(practice)
 mconcat :: Monoid a => [a] -> a
 mconcat = foldl (<>) empty
 
-result :: Sum
-result = mconcat [1..100]
+resultSum :: Sum
+resultSum = mconcat [1..100]
+
+resultAll :: And
+resultAll = mconcat [And True, And True, And True]
 -- #@@range_end(practice)
 
--- #@@range_begin(tests_for_law)
 main :: IO ()
 main = do
   smallCheck 2 $ emptyLaw @Sum
@@ -76,4 +68,3 @@ main = do
   smallCheck 2 $ emptyLaw @And
   smallCheck 2 $ emptyLaw @Or
   smallCheck 2 $ emptyLaw @()
--- #@@range_end(tests_for_law)

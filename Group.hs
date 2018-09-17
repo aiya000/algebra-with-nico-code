@@ -29,12 +29,6 @@ instance Group () where
   inverse () = ()
 -- #@@range_end(instances)
 
-aSumInt :: Sum
-aSumInt = inverse empty
-
-aUnit :: ()
-aUnit = inverse empty
-
 -- #@@range_begin(law)
 inverseLaw :: (Group a, Eq a) => a -> Bool
 inverseLaw x =
@@ -46,13 +40,3 @@ main = do
   smallCheck 2 $ inverseLaw @Sum
   smallCheck 2 $ inverseLaw @RSum
   smallCheck 2 $ inverseLaw @()
-
--- #@@range_begin(extra)
--- | An illegal instance
-instance Group RProduct where
-  inverse (RProduct x) = RProduct $ denominator x % numerator x
-
-checkRProductGroup :: IO ()
-checkRProductGroup =
-  smallCheck 2 $ inverseLaw @ RProduct
--- #@@range_end(extra)

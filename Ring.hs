@@ -41,10 +41,14 @@ instance Ring () where
   () >< ()    = ()
 -- #@@range_end(instances)
 
--- #@@range_begin(usual_laws)
+-- #@@range_begin(additive_laws)
 associativeLawForAdd :: (Ring a, Eq a) => a -> a -> a -> Bool
 associativeLawForAdd x y z =
   (x <> y) <> z == x <> (y <> z)
+
+commutativeLawForAdd :: (Ring a, Eq a) => a -> a -> Bool
+commutativeLawForAdd x y =
+  x <> y == y <> x
 
 emptyLawForAdd :: (Ring a, Eq a) => a -> Bool
 emptyLawForAdd x =
@@ -53,43 +57,49 @@ emptyLawForAdd x =
 inverseLawForAdd :: (Ring a, Eq a) => a -> Bool
 inverseLawForAdd x =
   (x <> inverseA x == emptyA) && (emptyA == inverseA x <> x)
+-- #@@range_end(additive_laws)
 
+-- #@@range_begin(multiplicative_laws)
 associativeLawForMulti :: (Ring a, Eq a) => a -> a -> a -> Bool
 associativeLawForMulti x y z =
   (x >< y) >< z == x >< (y >< z)
--- #@@range_end(usual_laws)
 
--- #@@range_begin(newer_law)
+commutativeLawForMulti :: (Ring a, Eq a) => a -> a -> Bool
+commutativeLawForMulti x y =
+  x <> y == y <> x
+-- #@@range_end(multiplicative_laws)
+
+-- #@@range_begin(distributive_law)
 distributiveLaw :: (Ring a, Eq a) => a -> a -> a -> Bool
 distributiveLaw x y z =
   x >< (y <> z) == x >< y <> x >< z
     &&
   (y <> z) >< x == y >< x <> z >< x
--- #@@range_end(newer_law)
+-- #@@range_end(distributive_law)
 
-checkAssociativeLawForAdd :: IO ()
-checkAssociativeLawForAdd = do
+checkAdditiveLaws :: IO ()
+checkAdditiveLaws = do
   smallCheck 2 $ associativeLawForAdd @Int
   smallCheck 2 $ associativeLawForAdd @Rational
   smallCheck 2 $ associativeLawForAdd @()
-
-checkEmptyLawForAdd :: IO ()
-checkEmptyLawForAdd = do
+  smallCheck 2 $ commutativeLawForAdd @Int
+  smallCheck 2 $ commutativeLawForAdd @Rational
+  smallCheck 2 $ commutativeLawForAdd @()
   smallCheck 2 $ emptyLawForAdd @Int
   smallCheck 2 $ emptyLawForAdd @Rational
   smallCheck 2 $ emptyLawForAdd @()
-
-checkInverseLawForAdd :: IO ()
-checkInverseLawForAdd = do
   smallCheck 2 $ inverseLawForAdd @Int
   smallCheck 2 $ inverseLawForAdd @Rational
   smallCheck 2 $ inverseLawForAdd @()
 
-checkAssociativeLawForMulti :: IO ()
-checkAssociativeLawForMulti = do
+checkMultiplicativeLaws :: IO ()
+checkMultiplicativeLaws = do
   smallCheck 2 $ associativeLawForMulti @Int
   smallCheck 2 $ associativeLawForMulti @Rational
   smallCheck 2 $ associativeLawForMulti @()
+  smallCheck 2 $ commutativeLawForMulti @Int
+  smallCheck 2 $ commutativeLawForMulti @Rational
+  smallCheck 2 $ commutativeLawForMulti @()
 
 checkDistributiveLaw :: IO ()
 checkDistributiveLaw = do
@@ -99,7 +109,6 @@ checkDistributiveLaw = do
 
 main :: IO ()
 main = do
-  checkAssociativeLawForAdd
-  checkEmptyLawForAdd
-  checkInverseLawForAdd
-  checkAssociativeLawForMulti
+  checkAdditiveLaws
+  checkMultiplicativeLaws
+  checkDistributiveLaw

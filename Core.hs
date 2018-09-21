@@ -12,11 +12,11 @@ import Test.SmallCheck.Series (Serial(..), Series)
 
 -- #@@range_begin(wrapper_types)
 newtype Sum = Sum
-  { unSum :: Int
+  { unSum :: Integer
   } deriving (Show, Eq, Num, Enum)
 
 newtype Product = Product
-  { unProduct :: Int
+  { unProduct :: Integer
   } deriving (Show, Eq, Num, Enum)
 
 newtype RSum = RSum

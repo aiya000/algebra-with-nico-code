@@ -22,7 +22,7 @@ infixl 7 ><
 -- #@@range_end(class)
 
 -- #@@range_begin(instances)
-instance Ring Int where
+instance Ring Integer where
   (<>)     = (+)
   emptyA   = 0
   inverseA = negate
@@ -79,31 +79,31 @@ distributiveLaw x y z =
 
 checkAdditiveLaws :: IO ()
 checkAdditiveLaws = do
-  smallCheck 2 $ associativeLawForAdd @Int
+  smallCheck 2 $ associativeLawForAdd @Integer
   smallCheck 2 $ associativeLawForAdd @Rational
   smallCheck 2 $ associativeLawForAdd @()
-  smallCheck 2 $ commutativeLawForAdd @Int
+  smallCheck 2 $ commutativeLawForAdd @Integer
   smallCheck 2 $ commutativeLawForAdd @Rational
   smallCheck 2 $ commutativeLawForAdd @()
-  smallCheck 2 $ emptyLawForAdd @Int
+  smallCheck 2 $ emptyLawForAdd @Integer
   smallCheck 2 $ emptyLawForAdd @Rational
   smallCheck 2 $ emptyLawForAdd @()
-  smallCheck 2 $ inverseLawForAdd @Int
+  smallCheck 2 $ inverseLawForAdd @Integer
   smallCheck 2 $ inverseLawForAdd @Rational
   smallCheck 2 $ inverseLawForAdd @()
 
 checkMultiplicativeLaws :: IO ()
 checkMultiplicativeLaws = do
-  smallCheck 2 $ associativeLawForMulti @Int
+  smallCheck 2 $ associativeLawForMulti @Integer
   smallCheck 2 $ associativeLawForMulti @Rational
   smallCheck 2 $ associativeLawForMulti @()
-  smallCheck 2 $ commutativeLawForMulti @Int
+  smallCheck 2 $ commutativeLawForMulti @Integer
   smallCheck 2 $ commutativeLawForMulti @Rational
   smallCheck 2 $ commutativeLawForMulti @()
 
 checkDistributiveLaw :: IO ()
 checkDistributiveLaw = do
-  smallCheck 2 $ distributiveLaw @Int
+  smallCheck 2 $ distributiveLaw @Integer
   smallCheck 2 $ distributiveLaw @Rational
   smallCheck 2 $ distributiveLaw @()
 

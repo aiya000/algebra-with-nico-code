@@ -20,7 +20,7 @@ class Semigroup a where
 -- #@@range_end(class)
 
 -- #@@range_begin(int_instance)
-instance Semigroup Int where
+instance Semigroup Integer where
   (<>) = (+)
 -- #@@range_end(int_instance)
 
@@ -80,7 +80,7 @@ associativeLaw x y z =
 concat :: Semigroup a => a -> [a] -> a
 concat = foldl (<>)
 
-resultSum :: Int
+resultSum :: Integer
 resultSum = concat 0 [1..100]
 
 resultAll :: Bool

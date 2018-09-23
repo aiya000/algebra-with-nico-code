@@ -53,9 +53,6 @@ instance Semigroup RSum where
 instance Semigroup RProduct where
   (<>) = (*)
 
-instance Semigroup Rational where
-  (<>) = (+)
-
 instance Semigroup [a] where
   (<>) = (++)
 

@@ -41,6 +41,9 @@ instance Semigroup And where
 
 instance Semigroup Or where
   Or x <> Or y = Or $ x || y
+
+instance Semigroup Xor where
+  Xor x <> Xor y = Xor $ x `xor` y
 -- #@@range_end(newtype_instances)
 
 -- #@@range_begin(another_instances)
@@ -97,5 +100,6 @@ main = do
   smallCheck 2 $ associativeLaw @[Double]
   smallCheck 2 $ associativeLaw @And
   smallCheck 2 $ associativeLaw @Or
+  smallCheck 2 $ associativeLaw @Xor
   smallCheck 2 $ associativeLaw @()
 -- #@@range_end(tests_for_law)

@@ -6,6 +6,7 @@ module Ring
   ( Ring (..)
   ) where
 
+import Core (xor)
 import Data.Ratio ((%))
 import Prelude hiding ((<>))
 import Test.SmallCheck (smallCheck)
@@ -33,6 +34,12 @@ instance Ring Rational where
   emptyA   = 0 % 1
   inverseA = negate
   (><)     = (*)
+
+instance Ring Bool where
+  (<>)     = xor
+  emptyA   = False
+  inverseA = id
+  (><)     = (&&)
 
 instance Ring () where
   () <> ()    = ()
@@ -81,30 +88,37 @@ checkAdditiveLaws :: IO ()
 checkAdditiveLaws = do
   smallCheck 2 $ associativeLawForAdd @Integer
   smallCheck 2 $ associativeLawForAdd @Rational
+  smallCheck 2 $ associativeLawForAdd @Bool
   smallCheck 2 $ associativeLawForAdd @()
   smallCheck 2 $ commutativeLawForAdd @Integer
   smallCheck 2 $ commutativeLawForAdd @Rational
+  smallCheck 2 $ commutativeLawForAdd @Bool
   smallCheck 2 $ commutativeLawForAdd @()
   smallCheck 2 $ emptyLawForAdd @Integer
   smallCheck 2 $ emptyLawForAdd @Rational
+  smallCheck 2 $ emptyLawForAdd @Bool
   smallCheck 2 $ emptyLawForAdd @()
   smallCheck 2 $ inverseLawForAdd @Integer
   smallCheck 2 $ inverseLawForAdd @Rational
+  smallCheck 2 $ inverseLawForAdd @Bool
   smallCheck 2 $ inverseLawForAdd @()
 
 checkMultiplicativeLaws :: IO ()
 checkMultiplicativeLaws = do
   smallCheck 2 $ associativeLawForMulti @Integer
   smallCheck 2 $ associativeLawForMulti @Rational
+  smallCheck 2 $ associativeLawForMulti @Bool
   smallCheck 2 $ associativeLawForMulti @()
   smallCheck 2 $ commutativeLawForMulti @Integer
   smallCheck 2 $ commutativeLawForMulti @Rational
+  smallCheck 2 $ commutativeLawForMulti @Bool
   smallCheck 2 $ commutativeLawForMulti @()
 
 checkDistributiveLaw :: IO ()
 checkDistributiveLaw = do
   smallCheck 2 $ distributiveLaw @Integer
   smallCheck 2 $ distributiveLaw @Rational
+  smallCheck 2 $ distributiveLaw @Bool
   smallCheck 2 $ distributiveLaw @()
 
 main :: IO ()

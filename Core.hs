@@ -34,6 +34,16 @@ newtype And = And
 newtype Or = Or
   { unOr :: Bool
   } deriving (Show, Eq)
+
+xor :: Bool -> Bool -> Bool
+xor True  True  = False
+xor True  False = True
+xor False True  = True
+xor False False = False
+
+newtype Xor = Xor
+  { unXor :: Bool
+  } deriving (Show, Eq)
 -- #@@range_end(wrapper_types)
 
 instance Monad m => Serial m Sum where
@@ -59,3 +69,7 @@ instance Monad m => Serial m And where
 instance Monad m => Serial m Or where
   series :: Series m Or
   series = Or <$> series
+
+instance Monad m => Serial m Xor where
+  series :: Series m Xor
+  series = Xor <$> series

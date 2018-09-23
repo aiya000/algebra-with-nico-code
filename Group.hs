@@ -25,6 +25,9 @@ instance Group Sum where
 instance Group RSum where
   inverse = negate
 
+instance Group Xor where
+  inverse = id
+
 instance Group () where
   inverse () = ()
 -- #@@range_end(instances)
@@ -39,4 +42,5 @@ main :: IO ()
 main = do
   smallCheck 2 $ inverseLaw @Sum
   smallCheck 2 $ inverseLaw @RSum
+  smallCheck 2 $ inverseLaw @Xor
   smallCheck 2 $ inverseLaw @()

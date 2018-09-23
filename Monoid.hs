@@ -37,6 +37,9 @@ instance Monoid And where
 instance Monoid Or where
   empty = Or False
 
+instance Monoid Xor where
+  empty = Xor False
+
 instance Monoid () where
   empty = ()
 -- #@@range_end(instances)
@@ -67,4 +70,5 @@ main = do
   smallCheck 2 $ emptyLaw @[Double]
   smallCheck 2 $ emptyLaw @And
   smallCheck 2 $ emptyLaw @Or
+  smallCheck 2 $ emptyLaw @Xor
   smallCheck 2 $ emptyLaw @()

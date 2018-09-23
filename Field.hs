@@ -6,6 +6,7 @@ module Field
   ( Field (..)
   ) where
 
+import Data.Maybe (fromJust)
 import Data.Ratio ((%), numerator, denominator)
 import Prelude hiding ((<>))
 import Ring

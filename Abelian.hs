@@ -18,6 +18,7 @@ instance Abelian RSum
 instance Abelian RProduct
 instance Abelian And
 instance Abelian Or
+instance Abelian Xor
 instance Abelian ()
 -- #@@range_end(instances)
 
@@ -36,5 +37,6 @@ main = do
   smallCheck 2 $ commutativeLaw @RProduct
   smallCheck 2 $ commutativeLaw @And
   smallCheck 2 $ commutativeLaw @Or
+  smallCheck 2 $ commutativeLaw @Xor
   smallCheck 2 $ commutativeLaw @()
 -- #@@range_end(tests_for_law)

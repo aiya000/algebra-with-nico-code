@@ -48,6 +48,7 @@ instance Ring () where
   () >< ()    = ()
 -- #@@range_end(instances)
 
+-- #@@range_begin(laws)
 -- #@@range_begin(additive_laws)
 associativeLawForAdd :: (Ring a, Eq a) => a -> a -> a -> Bool
 associativeLawForAdd x y z =
@@ -83,6 +84,7 @@ distributiveLaw x y z =
     &&
   (y <> z) >< x == y >< x <> z >< x
 -- #@@range_end(distributive_law)
+-- #@@range_end(laws)
 
 checkAdditiveLaws :: IO ()
 checkAdditiveLaws = do

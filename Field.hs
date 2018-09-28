@@ -15,21 +15,15 @@ import Test.SmallCheck (smallCheck)
 
 -- #@@range_begin(class)
 class Ring a => Field a where
-  emptyM   :: a
   inverseM :: a -> a
 -- #@@range_end(class)
 
 -- #@@range_begin(instances)
 instance Field Rational where
-  emptyM = 1 % 1
   inverseM x = denominator x % numerator x
 -- #@@range_end(instances)
 
 -- #@@range_begin(laws)
-emptyLawForMulti :: (Field a, Eq a) => a -> Bool
-emptyLawForMulti x =
-  (x >< emptyM == x) && (x == emptyM >< x)
-
 inverseLawForMulti :: forall a. (Field a, Eq a) => a -> Bool
 inverseLawForMulti x
   | x == emptyA = True
@@ -42,6 +36,5 @@ emptyDifferenceLaw = (emptyM :: a) /= (emptyA :: a)
 
 main :: IO ()
 main = do
-  smallCheck 2 $ emptyLawForMulti @Rational
   smallCheck 2 $ inverseLawForMulti @Rational
   smallCheck 2 $ emptyDifferenceLaw @Rational

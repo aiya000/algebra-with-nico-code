@@ -17,6 +17,7 @@ class Ring a where
   emptyA   :: a
   inverseA :: a -> a
   (><)     :: a -> a -> a
+  emptyM   :: a
 
 infixl 6 <>
 infixl 7 ><
@@ -28,24 +29,28 @@ instance Ring Integer where
   emptyA   = 0
   inverseA = negate
   (><)     = (*)
+  emptyM   = 1
 
 instance Ring Rational where
   (<>)     = (+)
   emptyA   = 0 % 1
   inverseA = negate
   (><)     = (*)
+  emptyM   = 1 % 1
 
 instance Ring Bool where
   (<>)     = xor
   emptyA   = False
   inverseA = id
   (><)     = (&&)
+  emptyM   = True
 
 instance Ring () where
   () <> ()    = ()
   emptyA      = ()
   inverseA () = ()
   () >< ()    = ()
+  emptyM      = ()
 -- #@@range_end(instances)
 
 -- #@@range_begin(laws)
@@ -75,6 +80,10 @@ associativeLawForMulti x y z =
 commutativeLawForMulti :: (Ring a, Eq a) => a -> a -> Bool
 commutativeLawForMulti x y =
   x <> y == y <> x
+
+emptyLawForMulti :: (Ring a, Eq a) => a -> Bool
+emptyLawForMulti x =
+  (x >< emptyM == x) && (x == emptyM >< x)
 -- #@@range_end(multiplicative_laws)
 
 -- #@@range_begin(distributive_law)
@@ -115,6 +124,10 @@ checkMultiplicativeLaws = do
   smallCheck 2 $ commutativeLawForMulti @Rational
   smallCheck 2 $ commutativeLawForMulti @Bool
   smallCheck 2 $ commutativeLawForMulti @()
+  smallCheck 2 $ emptyLawForMulti @Integer
+  smallCheck 2 $ emptyLawForMulti @Rational
+  smallCheck 2 $ emptyLawForMulti @Bool
+  smallCheck 2 $ emptyLawForMulti @()
 
 checkDistributiveLaw :: IO ()
 checkDistributiveLaw = do

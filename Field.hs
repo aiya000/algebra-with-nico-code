@@ -24,7 +24,7 @@ instance Field Rational where
 -- #@@range_end(instances)
 
 -- #@@range_begin(laws)
-inverseLawForMulti :: forall a. (Field a, Eq a) => a -> Bool
+inverseLawForMulti :: (Field a, Eq a) => a -> Bool
 inverseLawForMulti x
   | x == emptyA = True
   | otherwise =
